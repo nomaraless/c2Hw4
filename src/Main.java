@@ -1,32 +1,14 @@
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class Main {
-    public static void loginToAccount (){
+    public static void main(String[] args)  {
         Scanner sc = new Scanner(System.in);
-        String regex = "^[a-zA-Z0-9-_]{1,20}$";
-        Pattern pattern = Pattern.compile(regex);
-
+        System.out.println("Введите логин");
         String login = sc.nextLine();
+        System.out.println("Введите пароль");
         String password = sc.nextLine();
+        System.out.println("Подтвердите пароль");
         String confirmPassword = sc.nextLine();
-        if (!login.matches(regex)) {
-            try {
-                throw new WrongLoginException();
-            } catch (WrongLoginException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        if (!password.matches(regex) && password.equals(confirmPassword)) {
-            try {
-                throw new WrongPasswordException();
-            } catch (WrongPasswordException e) {
-                throw new RuntimeException(e);
-            }
-        }
-
-    }
-    public static void main(String[] args) {
-loginToAccount();
+        DataValidate.loginToAccount(login, password, confirmPassword);
     }
 }
